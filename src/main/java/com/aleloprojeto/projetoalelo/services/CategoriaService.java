@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.aleloprojeto.projetoalelo.domain.Categoria;
 import com.aleloprojeto.projetoalelo.repositories.CategoriaRepository;
+import com.aleloprojeto.projetoalelo.services.exceptions.ObjectNotFoundException;
+
 
 @Service
 public class CategoriaService {
@@ -16,8 +18,12 @@ public class CategoriaService {
 	
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElse(null); 
-		
-		
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+		}
+	
+	public Categoria insert(Categoria obj ) {
+		obj.setId(null);
+		return repo.save(obj);
 	}
 }
