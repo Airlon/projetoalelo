@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aleloprojeto.projetoalelo.domain.Categoria;
 import com.aleloprojeto.projetoalelo.services.CategoriaService;
 
-@RestController // Classe que é um Controller Rest
+@RestController // Classe que é um Controller Rest 
 @RequestMapping(value="/categorias") //Respondendo pelo Endpoint 
 public class CategoriaResource {
     
+	//acessando o serviço
 	@Autowired
 	private CategoriaService service;
 	

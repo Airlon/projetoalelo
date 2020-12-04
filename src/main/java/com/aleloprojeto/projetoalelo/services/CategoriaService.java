@@ -11,7 +11,7 @@ import com.aleloprojeto.projetoalelo.repositories.CategoriaRepository;
 @Service
 public class CategoriaService {
     
-	@Autowired //instanciando o repositório 
+	@Autowired //instanciando o repositório, acessar obj de acesso a dados 
 	private CategoriaRepository repo;
 	
 	public Categoria find(Integer id) {
