@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +27,8 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	@GetMapping(value="/{id}") //Requisição para obter dados
-	public ResponseEntity<?> find( @PathVariable Integer id) {
-		Categoria obj = service.find(id);
+	public ResponseEntity<Object> find( @PathVariable Integer id) {
+		Object obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 				
 	}
@@ -47,5 +48,10 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 		
 		}
-	
+	@DeleteMapping (value="/{id}") //Requisição para obter dados
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+		
+	}
 }
