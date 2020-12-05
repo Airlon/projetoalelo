@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.aleloprojeto.projetoalelo.domain.Categoria;
 import com.aleloprojeto.projetoalelo.services.CategoriaService;
+
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController // Classe que é um Controller Rest 
 @RequestMapping(value="/categorias") //Respondendo pelo Endpoint 
@@ -48,6 +50,10 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 		
 		}
+	
+	@ApiResponses(value = {
+	@ApiResponse(code = 400, message = "Não é possível excluir uma categoria que possui produtos"),
+	@ApiResponse(code = 404, message = "Código inexistente") })
 	@DeleteMapping (value="/{id}") //Requisição para obter dados
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
